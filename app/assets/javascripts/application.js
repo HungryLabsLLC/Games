@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require games
+//= require matches
 //= require_tree .

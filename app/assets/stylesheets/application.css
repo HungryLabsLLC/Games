@@ -10,5 +10,12 @@
  *
  *= require_self
  *= require games
+ *= require matches
  *= require_tree .
  */
+
+.container {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,0 +1,9 @@
+%h1{:style => "text-align: center;"}
+  TIC-TAC-TOE
+%div.container
+  = form_for(@match) do |f|
+    =f.hidden_field :game, :value => "tic-tac-toe"
+    =f.hidden_field :status, :value => "in progress"
+    =f.label "Players"
+    =f.select :players, [1,2]
+    = f.submit

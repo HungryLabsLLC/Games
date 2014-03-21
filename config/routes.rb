@@ -6,10 +6,17 @@ TicTacToe::Application.routes.draw do
   root 'games#index'
 
   resources :games do
-    collection do 
+    collection do
       get 'tictactoe'
     end
   end
+
+  resources :matches do
+    resources :moves
+  end
+
+  post '/matches/:id/moves/player_move' => 'moves#player_move'
+  post '/matches/:id/moves/computer_move' => 'moves#computer_move'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
