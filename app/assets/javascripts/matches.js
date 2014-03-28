@@ -29,36 +29,40 @@ $(function () {
     if (counter % 2 === 0) {
       var player = "1"
      $("#"+id+" div.placement").append("1");
-     counter ++
+      counter ++;
      $.ajax({
       type: 'POST',
       url: '/matches/'+match_id+'/moves/player_move',
       data: {'box': id},
       dataType: 'json',
-      success: function(data) {
-        $.each(data, function(index, element) {
-            $('body').append($('<div>', {
-                text: element.name
-            }));
-        });
-    }
-        },
-      error: function(data) {
-        return false;
+     }).done(function(response){
+      for (var k in response)
+      {
+        if (response.hasOwnProperty(k))
+        {
+          if (k == "value")
+          {
+          var player = "2"
+          var player2move = response[k]
+          $("#"+player2move+" div.placement").append("2");
+          counter ++;
+          checkScore(player);
+          }
+          else if (k == "outcome")
+          {
+            if (response[k] == "Player 2")
+            {
+              $("#"+response["last_move"]+" div.placement").append("2");
+              alert("YOU LOSE IDIOT!");
+            }
+            else if (response[k] == "Player 1")
+            {
+              alert("YOU WIN!");
+            }
+          }
+        }
       }
      });
-     checkScore(player);
-    }
-    else {
-      var player = "2"
-      $("#"+id+" div.placement").append("2");
-      counter ++
-      checkScore(player);
-    }
-    if (counter == 9){
-      $(alert("you suck andy"));
-      $('.placement').empty();
-      counter = 0
     }
   });
 });

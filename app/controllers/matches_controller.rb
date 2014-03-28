@@ -9,7 +9,7 @@ class MatchesController < ApplicationController
   end
 
   def create
-    @match = Match.create(:players => params[:players], :game => params[:game])
+    @match = Match.create(:players => params[:players], :game => params[:game], :status => params[:status])
     if @match.save
       redirect_to match_path(@match)
     else
