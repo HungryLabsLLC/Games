@@ -59,6 +59,10 @@ $(function () {
             {
               alert("YOU WIN!");
             }
+            else if (response[k] == "Tie")
+            {
+              alert("YOU CAN'T BEAT ME MWAHAHAAAAAAA");
+            }
           }
         }
       }

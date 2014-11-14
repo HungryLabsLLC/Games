@@ -8,8 +8,8 @@ development:
   database: games
   socket: /tmp/mysql.sock
   pool: 5
-  username: testuser
-  password: password
+  username: root
+  password: PicklE88
   timeout: 5000
 
 # Warning: The database defined as "test" will be erased and

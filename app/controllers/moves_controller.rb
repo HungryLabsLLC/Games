@@ -20,6 +20,10 @@ class MovesController < ApplicationController
         respond_to do |format|
           format.json {render json: comp_winning_data}
         end
+      elsif Match.find(params[:id]).remaining_slots.empty?
+        respond_to do |format|
+          format.json {render json: {"outcome" => "Tie", "last_move" => @match.moves.last.value}}
+        end
       else
         respond_to do |format|
           format.json {render json: @match.moves.where(:player => 2).last}

@@ -46,15 +46,16 @@ class Match < ActiveRecord::Base
   end
 
   def previous_player_moves
-    return self.moves.where(:player => 1)
+    return self.moves.where(player: 1)
   end
 
   def previous_computer_moves
-    return self.moves.where(:player => 2)
+    return self.moves.where(player: 2)
   end
 
   def new_computer_move
-    self.moves.create(:player => 2, :value => remaining_slots.sample)
+    next_comp_move = Move.determine_next_move(self, 2)
+    self.moves.create(player: 2, value: next_comp_move)
   end
 
   def check_horizontal_moves(player)
